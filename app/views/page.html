@@ -1,27 +1,102 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="/static/styles/semantic.min.css" media="screen" title="" charset="utf-8">
-    </head>
-    <body>
-            <div class="ui card">
-      <div class="image">
-        <img src="/images/avatar2/large/kristy.png">
-      </div>
-      <div class="content">
-        <a class="header">Kristy</a>
-        <div class="meta">
-          <span class="date">Joined in 2013</span>
+<head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <%- include("./import_styles.html", undefined) %>
+</head>
+<body>
+
+    <div class="ui stackable menu">
+        <div class="item">
+            <img src="/static/images/1.jpg" class="ui mini circular image">
+             Summer
         </div>
-        <div class="description">Kristy is an art director living in New York. </div>
-      </div>
-      <div class="extra content">
-        <a><i class="user icon"></i> 22 Friends </a>
-      </div>
+        <a class="item">
+            <i class="large github icon"></i>
+        </a>
+        <a class="item">
+            <i class="large twitter icon"></i>
+        </a>
     </div>
-        <script src="/static/scripts/jquery.min.js"></script>
-        <script src="/static/scripts/semantic.min.js"></script>
-    </body>
+
+    <div class="ui sixteen column very relaxed grid container">
+
+        <div class="eight column row">
+            <div class="eight wide column centered">
+                <div class="ui fluid card">
+                    <div class="image">
+                        <img src="/static/images/1.jpg">
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            Kristy is an art director living in New York. Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="eight column row">
+            <div class="eight wide column centered">
+                <div class="ui fluid card">
+                    <div class="image">
+                        <img src="/static/images/1.jpg">
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            Kristy is an art director living in New York. Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="eight column row">
+            <div class="eight wide column centered">
+                <div class="ui fluid card">
+                    <div class="image">
+                        <img src="/static/images/1.jpg">
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            Kristy is an art director living in New York. Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="eight column row">
+            <div class="eight wide column centered">
+                <div class="ui fluid card">
+                    <div class="image">
+                        <img src="/static/images/1.jpg">
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            Kristy is an art director living in New York. Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                            Kristy is an art director living in New York.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include("./import_scripts.html", undefined) %>
+
+</body>
 </html>
