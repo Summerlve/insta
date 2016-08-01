@@ -1,8 +1,29 @@
 {
+    "app": {
+        "production": {
+            "port": 9000,
+            "host": "localhost"
+        },
+        "test": {
+
+        }
+    },
     "db": {
-        "type": "mysql",
-        "username": "root",
-        "password": "123456",
-        "database": "insta"
+        "production": {
+            "type": "mysql",
+            "username": "root",
+            "password": "123456",
+            "database": "insta",
+            "host": "localhost",
+            "port": 3306,
+            "pool": {
+                "max": 5,
+        		"min": 0,
+        		"idle": 10000
+            }
+        },
+        "test": {
+
+        }
     }
 }

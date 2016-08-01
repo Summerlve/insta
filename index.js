@@ -3,11 +3,17 @@
 const path = require("path");
 const express = require("express");
 const app = express();
-const router = require("./app/route.js");
-const Sequelize = require("sequelize");
 
 // app root dir
-global.appRoot = __dirname;
+const appRoot = __dirname
+module.exports.appRoot = appRoot;
+
+// app config
+const config = require("./config.json");
+module.exports.config = config;
+
+// db init
+module.exports.sequelize = require("./db.js");
 
 // static files
 app.use("/static",
@@ -15,9 +21,10 @@ app.use("/static",
         path.join(appRoot, "public")));
 
 // load route
+const router = require("./route.js");
 app.use("/", router);
 
-// sequelize init
-const sequelize = new Sequelize('database', 'username', 'password');
+// listen port, default port is 9000 just for test
+const { app: { production: port = 9000} } = config;
 
-app.listen("9000");
+app.listen(port);

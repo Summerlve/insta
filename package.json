@@ -1,19 +1,21 @@
 {
-    "name": "insta",
-    "version": "1.0.0",
-    "description": "instagram like app",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Summerlve",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Summerlve/insta"
-    },
-    "dependencies": {
-        "express": "^4.14.0",
-        "sequelize": "^3.23.6"
-    }
+  "name": "insta",
+  "version": "1.0.0",
+  "description": "instagram like app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Summerlve",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Summerlve/insta"
+  },
+  "dependencies": {
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.23.6"
+  }
 }
