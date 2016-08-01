@@ -1,6 +1,6 @@
 ### Introductions
     This web app just like instagram, but less then its function, Only single user picture blog.
-    This app has MIT license.
+    This app is licensed under a MIT license.
 
 
 ### Open Source license
