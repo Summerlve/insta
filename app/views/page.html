@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title><%= title %></title>
-    <%- include("./import_styles.html", undefined) %>
+    <%- include("./head.html", undefined) %>
+    <style media="screen">
+        .custom-space {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-
-    <div class="ui stackable menu">
-        <div class="item">
-            <img src="/static/images/1.jpg" class="ui mini circular image">
-             Summer
+    <div class="ui segments">
+        <div class="ui horizontal segments">
+            <div class="ui center aligned segment">
+                <span><img src="/static/images/1.jpg" class="ui mini avatar image"></span>
+                <span><%= username %></span>
+                <span class="custom-space"></span>
+                <a>
+                    <i class=" github mini link icon" href="https://github.com/Summerlve"></i>
+                </a>
+                <a>
+                    <i class=" twitter mini link icon" href="https://twitter.com/Summer_Code"></i>
+                </a>
+            </div>
         </div>
-        <a class="item">
-            <i class="large github icon"></i>
-        </a>
-        <a class="item">
-            <i class="large twitter icon"></i>
-        </a>
     </div>
 
-    <div class="ui sixteen column very relaxed grid container">
-
+    <div class="ui sixteen column grid container">
         <div class="eight column row">
             <div class="eight wide column centered">
                 <div class="ui fluid card">
@@ -30,9 +34,8 @@
                     </div>
                     <div class="content">
                         <div class="description">
+                            中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国
                             Kristy is an art director living in New York. Kristy is an art director living in New York.
-                            Kristy is an art director living in New York.
-                            Kristy is an art director living in New York.
                         </div>
                     </div>
 
@@ -93,10 +96,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <%- include("./import_scripts.html", undefined) %>
+    <%- include("./scripts.html", undefined) %>
 
 </body>
 </html>

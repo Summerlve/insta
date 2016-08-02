@@ -4,6 +4,12 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+const [ , , env] = process.argv;
+
+// set NODE_ENV
+(!env)?
+    process.env.NODE_ENV = "development" : process.env.NODE_ENV = env;
+
 // app root dir
 const appRoot = __dirname
 module.exports.appRoot = appRoot;
@@ -32,5 +38,5 @@ const router = require("./route.js");
 app.use("/", router);
 
 // listen port, default port is 9000 just for test
-const { app: { production: port = 9000} } = config;
-app.listen(port);
+const { app: { production: { host, port } } } = config;
+app.listen(port, host);
