@@ -10,16 +10,27 @@ const upload = require("./app/controllers/upload.js");
 const file = require("./app/controllers/file.js");
 const error = require("./app/controllers/error.js");
 
+// page
 router.get("/", page.index);
 router.get("/page", page.index);
 router.get("/page/:id", page.one);
+
+// editor
 router.get("/editor", editor);
+
+// auth
 router.get("/login", auth.index);
-router.post("/auth", auth.login);
-router.delete("/auth", auth.logout);
+router.post("/login", auth.login);
+router.post("/logout", auth.logout);
+
+// setting
 router.get("/settting", setting.index);
 router.post("/setting", setting.set);
+
+// upload
 router.post("/upload", upload);
+
+// file
 router.get("/file", file.index);
 router.get("/file/:id", file.one);
 router.put("/file/:id", file.change);

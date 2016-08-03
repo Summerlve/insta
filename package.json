@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "echo \"Error: no test specified\" && exit 1",
-    "test": "supervisor ./index.js"
+    "dev": "supervisor ./index.js"
   },
   "author": "Summerlve",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "url": "https://github.com/Summerlve/insta"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "mysql": "^2.11.1",

@@ -33,6 +33,12 @@ app.set("view engine", "ejs");
 // set view root dir
 app.set("views", path.join(appRoot, "app", "views"));
 
+// body-parser
+const bodyParser = require("body-parser");
+console.log(bodyParser);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // load route
 const router = require("./route.js");
 app.use("/", router);
