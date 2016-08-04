@@ -27,6 +27,10 @@ module.exports.config = config;
 // db init
 module.exports.sequelize = require("./db.js");
 
+// gzip
+const compression = require("compression");
+app.use(compression({ threshold: 0 }));
+
 // static files
 app.use("/static",
     express.static(

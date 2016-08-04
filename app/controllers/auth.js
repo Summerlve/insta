@@ -2,12 +2,6 @@
 
 const User = require("../models/user.js");
 
-module.exports.index = (req, res, next) => {
-    res.render("login.html", { title: "login" }, (error, html) => {
-        return res.send(html);
-    });
-};
-
 module.exports.login = (req, res, next) => {
     const { username, password } = req.body;
     User.findOne({

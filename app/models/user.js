@@ -30,11 +30,17 @@ const User = sequelize.define("user", {
 		unique: false,
 		field: "avatar"
 	},
-	introduce: {
+	github: {
 		type: Sequelize.STRING(255),
 		allowNull: true,
-		unique: false,
-		field: "introduce"
+		unique: true,
+		field: "github"
+	},
+	twitter: {
+		type: Sequelize.STRING(255),
+		allowNull: true,
+		unique: true,
+		field: "twitter"
 	}
 });
 
