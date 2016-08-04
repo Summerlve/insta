@@ -10,6 +10,12 @@ const [ , , env] = process.argv;
 (!env)?
     process.env.NODE_ENV = "development" : process.env.NODE_ENV = env;
 
+if (app.get("env") === "production")
+{
+    // do somthing in production env
+    // smothing secrity
+}
+
 // app root dir
 const appRoot = __dirname
 module.exports.appRoot = appRoot;
@@ -35,9 +41,17 @@ app.set("views", path.join(appRoot, "app", "views"));
 
 // body-parser
 const bodyParser = require("body-parser");
-console.log(bodyParser);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// session
+const session = require("express-session");
+app.use(session({
+    secret: "insta",
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
+    resave: false,
+    saveUninitialized: true
+}));
 
 // load route
 const router = require("./route.js");
