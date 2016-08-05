@@ -18,35 +18,33 @@
     </style>
 </head>
 <body>
-    <div class="ui middle aligned center aligned grid">
-        <div class="column">
-            <h2 class="ui blue image header">
-                <img src="/static/images/1.jpg" class="ui tiny avatar image">
-                <div class="blue content">
-                    Log-in to your account
-                </div>
-            </h2>
-            <form class="ui large form" action="/login" method="POST">
-                <div class="ui stacked segment">
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="user icon"></i>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
+        <div class="ui middle aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui blue image header">
+                    <img src="/static/images/1.jpg" class="ui tiny avatar image">
+                    <div class="blue content">
+                        Log-in to your account
                     </div>
-                    <div class="field">
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="Password">
+                </h2>
+                <form class="ui large form" action="/login" method="POST">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
                         </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <button class="ui fluid large blue submit button" type="submit">Login</div>
                     </div>
-                    <button class="ui fluid large blue submit button" type="submit">Login</div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-
-    <%- include("./scripts.html", undefined) %>
 
 </body>
 </html>

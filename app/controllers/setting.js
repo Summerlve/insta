@@ -1,5 +1,7 @@
 "use strict";
 
-module.exports.set = (req, res) => {
+const User = require("../models/user.js");
+
+module.exports.update = (req, res) => {
 
 };
