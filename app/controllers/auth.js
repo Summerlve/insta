@@ -3,11 +3,15 @@
 const User = require("../models/user.js");
 
 module.exports.index = (req, res, next) => {
-    res.render("");
+    return res.render("login.html", { title: "login" },  (error, html) => {
+        if (error) next(error);
+        res.send(html);
+    });
 };
 
 module.exports.login = (req, res, next) => {
     const { username, password } = req.body;
+
     User.findOne({
         where: { username, password },
         attributes: ["username"]
@@ -20,7 +24,7 @@ module.exports.login = (req, res, next) => {
         }
 
         req.session.access = true;
-        res.end();
+        res.redirect("/root");
     });
 
 };

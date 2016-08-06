@@ -1,7 +1,21 @@
 "use strict";
 
-const { type, username, password, database, host, port, pool } = require("./index.js").config.db.production;
 const Sequelize = require("sequelize");
+
+let config = {};
+const env = process.env.NODE_ENV;
+
+if (env === "production")
+{
+	config = require("./index.js").config.db.production;
+}
+else if (env === "development" || !env)
+{
+	config = require("./index.js").config.db.development;
+}
+
+// get config
+const { type, username, password, database, host, port, pool } = config;
 
 // sequelize init
 const sequelize = new Sequelize(database, username, password, {
