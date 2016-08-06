@@ -61,6 +61,12 @@ app.use(session({
 const router = require("./route.js");
 app.use("/", router);
 
+// load error handle
+const errorHandle = require("./app/controllers/error.js");
+
 // listen port, default port is 9000 just for test
 const { app: { production: { host, port } } } = config;
-app.listen(port, host);
+app.listen(port, host, (error) => {
+    if (error) return console.log(error);
+    console.log(`listening ${host} : ${port}`);
+});

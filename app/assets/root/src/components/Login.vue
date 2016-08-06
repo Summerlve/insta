@@ -3,9 +3,9 @@
         <div class="ui middle aligned center aligned grid">
             <div class="column">
                 <h2 class="ui blue image header">
-                    <img src="/static/images/1.jpg" class="ui tiny avatar image">
+                    <img :src="avatar" class="ui tiny avatar image">
                     <div class="blue content">
-                        Log-in to your account
+                        {{ content }}
                     </div>
                 </h2>
                 <form class="ui large form" action="/login" method="POST">
@@ -32,7 +32,12 @@
 
 <script scoped>
     export default {
-
+        data() {
+            return {
+                avatar: "/static/images/1.jpg",
+                content: "Log-in to your account"
+            }
+        }
     };
 </script>
 
@@ -40,12 +45,14 @@
     body {
         background-color: #F5F5F5;
     }
-
-
 </style>
 
 <style scoped>
-    body > .grid {
+    #login {
+        height: inherit;
+    }
+
+    #login > .grid {
         height: 100%;
     }
 

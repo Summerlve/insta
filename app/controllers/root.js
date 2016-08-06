@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = (req, res) => {
-    res.render("root.html", {}, function(err, html) {
+    res.render("root.html", {}, (error, html) => {
         res.send(html);
     });
 };

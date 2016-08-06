@@ -39,3 +39,6 @@ jspm_packages
 
 # Fuck MacOSX
 .DS_Store
+
+# ignore build file
+public/assets/

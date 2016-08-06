@@ -2,6 +2,10 @@
 
 const User = require("../models/user.js");
 
+module.exports.index = (req, res, next) => {
+    res.render("");
+};
+
 module.exports.login = (req, res, next) => {
     const { username, password } = req.body;
     User.findOne({

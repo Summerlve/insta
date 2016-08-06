@@ -1,19 +1,17 @@
 <template>
-    <div id="app">
-        <login></login>
+    <div>
+
     </div>
 </template>
 
 <script>
-    import Login from './components/Login'
-
     export default {
-        components: {
-            Login
-        }
+
     }
 </script>
 
 <style scoped>
-
+    #app {
+        height: 100%;
+    }
 </style>
