@@ -18,9 +18,7 @@ module.exports.login = (req, res, next) => {
     }).then(user => {
         if (!user)
         {
-            return res.render("login.html", { title: "login" },  (error, html) => {
-                res.send(html);
-            });
+            return module.exports.index(req, res, next);
         }
 
         req.session.access = true;
@@ -31,6 +29,7 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res, next) => {
     const {session: {access}} = req;
+
     if (access === true)
     {
         req.session.access = false;
@@ -39,4 +38,6 @@ module.exports.logout = (req, res, next) => {
     {
         // not access before, my be a fake request
     }
+
+    res.redirect("/login");
 };

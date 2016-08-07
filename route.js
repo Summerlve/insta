@@ -14,12 +14,12 @@ router.get("/page", page.index);
 router.get("/index", page.index);
 
 // login
-router.get("/root/login", auth.index);
-router.post("/root/login", auth.login);
-router.post("/root/logout", auth.logout);
+router.get("/login", auth.index);
+router.post("/login", auth.login);
+router.post("/logout", auth.logout);
 
 // root
-router.get("/root", filter, root);
+router.get("/root", root);
 router.put("/root/setting", filter, setting.update);
 
 module.exports = router;
