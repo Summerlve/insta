@@ -1,6 +1,6 @@
 <template>
     <div id="editor">
-        123123
+        
     </div>
 </template>
 

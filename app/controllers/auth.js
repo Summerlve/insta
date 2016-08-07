@@ -3,6 +3,10 @@
 const User = require("../models/user.js");
 
 module.exports.index = (req, res, next) => {
+    const { access } = req.session;
+
+    if (access === true) return res.redirect("/root"); // if is login, redirect to /root
+
     return res.render("login.html", { title: "login" },  (error, html) => {
         if (error) next(error);
         res.send(html);
