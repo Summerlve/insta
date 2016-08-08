@@ -9,6 +9,7 @@
                      <span class="custom-horizontal-space"></span>
                      <a href="/logout">logOut</a>
                 </h4>
+                <div class="ui divider"></div>
                 <router-view></router-view>
             </div>
         </div>
