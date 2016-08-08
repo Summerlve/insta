@@ -8,10 +8,10 @@
                     <span>{{ username }}</span>
                     <span class="custom-horizontal-space"></span>
                     <span>
-                        <i class=" github mini link icon" href="https://github.com/Summerlve"></i>
+                        <i class="github link icon" href="https://github.com/Summerlve"></i>
                     </span>
                     <span>
-                        <i class=" twitter mini link icon" href="https://twitter.com/Summer_Code"></i>
+                        <i class="twitter link icon" href="https://twitter.com/Summer_Code"></i>
                     </span>
                 </div>
             </div>
