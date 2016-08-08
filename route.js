@@ -16,10 +16,11 @@ router.get("/index", page.index);
 // login
 router.get("/login", auth.index);
 router.post("/login", auth.login);
-router.post("/logout", auth.logout);
+router.get("/logout", filter, auth.logout);
 
 // root
 router.get("/root", root);
-router.put("/root/setting", filter, setting.update);
+router.get("/root/setting", filter, setting.info);
+router.post("/root/setting", filter, setting.update);
 
 module.exports = router;

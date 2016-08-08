@@ -24,3 +24,7 @@ router.start(App, "body");
 
 // use /editor default
 router.go("/editor");
+
+$(document).ready(function(){
+   $('.tabular.menu .item').tab({history:false});
+});

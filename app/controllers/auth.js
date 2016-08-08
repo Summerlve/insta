@@ -18,7 +18,7 @@ module.exports.login = (req, res, next) => {
 
     User.findOne({
         where: { username, password },
-        attributes: ["username"]
+        attributes: ["username", "id"]
     }).then(user => {
         if (!user)
         {
@@ -26,9 +26,12 @@ module.exports.login = (req, res, next) => {
         }
 
         req.session.access = true;
-        res.redirect("/root");
-    });
+        req.session.userId = user.id;
 
+        res.redirect("/root");
+    }, error => {
+        next(error);
+    });
 };
 
 module.exports.logout = (req, res, next) => {
@@ -36,7 +39,7 @@ module.exports.logout = (req, res, next) => {
 
     if (access === true)
     {
-        req.session.access = false;
+        req.session.destroy(); // destroy the session
     }
     else
     {

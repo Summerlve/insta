@@ -1,17 +1,15 @@
 <template>
     <div id="app">
         <div class="ui grid container">
-            <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
-                <div class="ui segment">
-                    <a v-link="{ path: '/editor' }">editor</a>
-                    <a v-link="{ path: '/setting' }">setting</a>
-                    <a href="#">logout</a>
-                </div>
-            </div>
-            <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
-                <div class="ui segment">
-                    <router-view></router-view>
-                </div>
+            <div class="ui piled segment">
+                <h4 class="ui header">
+                     <a v-link="{ path: '/editor' }">Editor</a>
+                     <span class="custom-horizontal-space"></span>
+                     <a v-link="{ path: '/setting' }">Setting</a>
+                     <span class="custom-horizontal-space"></span>
+                     <a href="/logout">logOut</a>
+                </h4>
+                <router-view></router-view>
             </div>
         </div>
     </div>
@@ -25,6 +23,22 @@
 
 <style scoped>
     #app {
+        width: 100%;
         height: 100%;
+    }
+
+    .grid {
+        width: 100%;
+        height: 100%;
+        padding-top: 35px;
+    }
+
+    .piled {
+        width: 100%;
+    }
+
+    .custom-horizontal-space {
+        display: inline-block;
+        margin-left: 10px;
     }
 </style>
