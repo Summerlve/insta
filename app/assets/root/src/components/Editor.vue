@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="ui divider"></div>
-            <button class="fluid big ui primary button" type="submit">Post it</button>
+            <button class="fluid big ui primary button" type="submit">Post It</button>
         </form>
     </div>
 </template>
@@ -52,7 +52,7 @@
             // image preview
             $("#image-selector").change(event => {
                 $("#image-placeholder").hide();
-                
+
                 previewImg(
                     document.querySelector("#image-selector"),
                     $("#image-preview"));
