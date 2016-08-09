@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="ui grid container">
-            <div class="ui piled segment">
+            <div class="ui segment">
                 <h4 class="ui header">
                      <a v-link="{ path: '/editor' }">Editor</a>
                      <span class="custom-horizontal-space"></span>
@@ -25,16 +25,15 @@
 <style scoped>
     #app {
         width: 100%;
-        height: 100%;
     }
 
     .grid {
         width: 100%;
-        height: 100%;
         padding-top: 35px;
+        padding-bottom: 35px;
     }
 
-    .piled {
+    .segment {
         width: 100%;
     }
 

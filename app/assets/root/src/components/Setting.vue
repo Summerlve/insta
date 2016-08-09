@@ -1,27 +1,71 @@
 <template>
     <div id="setting">
         <form class="ui form">
-            <div class="field">
-                <label>Username</label>
-                <input type="text" name="first-name" placeholder="First Name">
+            <div class="ui grid container">
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>Username</label>
+                        <input type="text" name="first-name" placeholder="Username">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>New Password</label>
+                        <input type="password" name="password" placeholder="New Password">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>New Password Again</label>
+                        <input type="password" name="password_again" placeholder="New Password Again">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <button class="fluid big ui primary button" type="submit">Change Account's infomation</button>
+                </div>
             </div>
-            <div class="field">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="">
+        </form>
+        <div class="ui divider"></div>
+        <form class="ui form">
+            <div class="ui grid container">
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>Avatar</label>
+                        <input type="text" name="first-name" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <button class="fluid big ui primary button" type="submit">Change Avatar</button>
+                </div>
             </div>
-            <div class="field">
-                <label>Avatar</label>
-                <input type="text" name="first-name" placeholder="First Name">
+        </form>
+        <div class="ui divider"></div>
+        <form class="ui form">
+            <div class="ui grid container">
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>Github Address</label>
+                        <input type="text" name="github" placeholder="Github Address">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <button class="fluid big ui primary button" type="submit">Change Github Address</button>
+                </div>
             </div>
-            <div class="field">
-                <label>Github Address</label>
-                <input type="text" name="first-name" placeholder="First Name">
+        </form>
+        <div class="ui divider"></div>
+        <form class="ui form">
+            <div class="ui grid container">
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <div class="field">
+                        <label>Twitter Address</label>
+                        <input type="text" name="twitter" placeholder="Twitter Address">
+                    </div>
+                </div>
+                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
+                    <button class="fluid big ui primary button" type="submit">Change Twitter Address</button>
+                </div>
             </div>
-            <div class="field">
-                <label>Twitter Address</label>
-                <input type="text" name="first-name" placeholder="First Name">
-            </div>
-            <button class="ui button" type="submit">Submit</button>
         </form>
     </div>
 </template>
@@ -33,5 +77,7 @@
 </script>
 
 <style scoped>
-
+    #setting {
+        width: 100%;
+    }
 </style>
