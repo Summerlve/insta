@@ -4,14 +4,19 @@ const express = require("express");
 const router = express.Router();
 const page = require("./app/controllers/page.js");
 const root = require("./app/controllers/root.js");
-const setting = require("./app/controllers/setting.js");
+const user = require("./app/controllers/user.js");
 const filter = require("./app/controllers/filter.js");
 const auth = require("./app/controllers/auth.js");
+const post = require("./app/controllers/post.js");
 
 // page
 router.get("/", page.index);
 router.get("/page", page.index);
 router.get("/index", page.index);
+
+// post
+router.get("/post", post.range);
+router.post("/post", post.add);
 
 // login
 router.get("/login", auth.index);
@@ -20,7 +25,9 @@ router.get("/logout", filter, auth.logout);
 
 // root
 router.get("/root", root);
-router.get("/root/setting", filter, setting.info);
-router.post("/root/setting", filter, setting.update);
+
+// setting user info
+router.get("/setting", filter, user.info);
+router.post("/setting", filter, user.update);
 
 module.exports = router;

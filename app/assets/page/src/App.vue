@@ -3,8 +3,6 @@
         <div class="ui segments">
             <div class="ui horizontal segments">
                 <div class="ui center aligned segment">
-                    <span><img src="/static/images/1.jpg" class="ui mini avatar image"></span>
-                    <span class="custom-horizontal-space"></span>
                     <span>{{ username }}</span>
                     <span class="custom-horizontal-space"></span>
                     <span>

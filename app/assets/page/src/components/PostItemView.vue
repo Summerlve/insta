@@ -19,7 +19,7 @@
     export default {
         data() {
             return {
-                image: "/static/images/2.png",
+                image: "/static/images/1.jpg",
                 content: `中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国
                         Kristy is an art director living in New York. Kristy is an art director living in New York.`
             }

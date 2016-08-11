@@ -1,22 +1,27 @@
 "use strict";
 
-const post = require("../models/post.js");
+const Post = require("../models/post.js");
 
 module.exports.range = (req, res) => {
-    const { begin, num = 1 } = req.query;
+    let { pos, num = 1 } = req.query;
 
     // string->number
-    begin = parseInt(begin, 10);
+    pos = parseInt(pos, 10);
     num = parseInt(num, 10);
 
-};
-
-module.exports.change = (req, res) => {
-
-};
-
-module.exports.delete = (req, res) => {
-
+    Post.findAll({
+        where: {
+            id: {
+                $lt: pos
+            }
+        },
+        order: [
+            ["create_at", "DESC"]
+        ],
+        limit: num
+    }).then(records => {
+        res.json(records);
+    });
 };
 
 module.exports.add = (req, res) => {

@@ -24,12 +24,6 @@ const User = sequelize.define("user", {
 		unique: false,
 		field: "password"
 	},
-	avatar: {
-		type: Sequelize.STRING(255),
-		allowNull: true,
-		unique: false,
-		field: "avatar"
-	},
 	github: {
 		type: Sequelize.STRING(255),
 		allowNull: true,
