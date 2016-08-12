@@ -1,6 +1,6 @@
 <template>
     <div id="editor">
-        <form class="ui form" method="POST" action="">
+        <form class="ui form" method="POST" action="/post" enctype="multipart/form-data">
             <div class="ui grid container">
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                     <div class="field">

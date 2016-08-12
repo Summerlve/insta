@@ -1,4 +1,5 @@
 {
+    "tz": "+08:00",
     "app": {
         "production": {
             "port": 9000,

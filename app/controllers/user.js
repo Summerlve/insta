@@ -33,7 +33,7 @@ module.exports.update = (req, res, next) => {
 
     User.findById(parseInt(userId, 10)).then(user => {
         return user.update(changes);
-    }.then(_ => {
+    }).then(_ => {
         res.json();
     }).error(error => {
         res.json();

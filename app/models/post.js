@@ -1,7 +1,8 @@
 "use strict";
 
 const Sequelize = require("sequelize");
-const { sequelize } = require("../../index.js");
+const moment = require("moment");
+const { sequelize, config: tz } = require("../../index.js");
 
 const Post = sequelize.define("post", {
 	id: {
@@ -26,6 +27,18 @@ const Post = sequelize.define("post", {
 	createAt: {
 		type: Sequelize.DATE,
 		field: "create_at",
+		defaultValue() {
+			return moment.utc().format("YYYY-MM-DDTHH:mm:ss");
+		},
+		get() {
+			let createAt = this.getDataValue("createAt");
+
+			createAt = createAt.replace(" ", "T");
+
+			return moment(new Date(createAt).toISOString())
+					.utcOffset(tz)
+					.format("YYYY-MM-DD HH:mm:ss");
+		}
 	}
 });
 
