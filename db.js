@@ -2,20 +2,13 @@
 
 const Sequelize = require("sequelize");
 
-let config = {};
-const env = process.env.NODE_ENV;
-
-if (env === "production")
-{
-	config = require("./index.js").config.db.production;
-}
-else if (env === "development" || !env)
-{
-	config = require("./index.js").config.db.development;
-}
+const { config } = require("./index.js");
 
 // get config
-const { type, username, password, database, host, port, pool } = config;
+const { type, username, password, database, host, port, pool } = config.db;
+
+// get timezone
+const { timezone } = config.app;
 
 // sequelize init
 const sequelize = new Sequelize(database, username, password, {
@@ -26,7 +19,8 @@ const sequelize = new Sequelize(database, username, password, {
 	define: {
 		freezeTableName: true,
 		timestamps: false
-	}
+	},
+	timezone
 });
 
 module.exports = sequelize;

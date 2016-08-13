@@ -29,22 +29,12 @@ module.exports.login = (req, res, next) => {
         req.session.userId = user.id;
 
         res.redirect("/root");
-    }, error => {
+    }).catch(error => {
         next(error);
     });
 };
 
 module.exports.logout = (req, res, next) => {
-    const {session: {access}} = req;
-
-    if (access === true)
-    {
-        req.session.destroy(); // destroy the session
-    }
-    else
-    {
-        // not access before, my be a fake request
-    }
-
-    res.redirect("/login");
+    req.session.destroy(); // destroy the session
+    res.redirect("/login"); // redirect to /login
 };

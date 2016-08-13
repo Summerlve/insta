@@ -21,20 +21,21 @@ const Post = sequelize.define("post", {
 	img: {
 		type: Sequelize.STRING(255),
 		allowNull: false,
-		unique: false,
+		unique: true,
 		field: "img"
 	},
 	createAt: {
 		type: Sequelize.DATE,
+		allowNull: false,
 		field: "create_at",
 		defaultValue() {
+			console.log(moment.utc().format("YYYY-MM-DDTHH:mm:ss"));
 			return moment.utc().format("YYYY-MM-DDTHH:mm:ss");
 		},
 		get() {
 			let createAt = this.getDataValue("createAt");
-
+			console.log(createAt);
 			createAt = createAt.replace(" ", "T");
-
 			return moment(new Date(createAt).toISOString())
 					.utcOffset(tz)
 					.format("YYYY-MM-DD HH:mm:ss");

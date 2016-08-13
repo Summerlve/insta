@@ -1,41 +1,20 @@
 {
-    "tz": "+08:00",
     "app": {
-        "production": {
-            "port": 9000,
-            "host": "localhost"
-        },
-        "development": {
-            "port": 9000,
-            "host": "localhost"
-        }
+        "port": 9000,
+        "host": "localhost",
+        "timezone": "+08:00"
     },
     "db": {
-        "production": {
-            "type": "mysql",
-            "username": "root",
-            "password": "123456",
-            "database": "insta",
-            "host": "localhost",
-            "port": 3306,
-            "pool": {
-                "max": 5,
-        		"min": 0,
-        		"idle": 10000
-            }
-        },
-        "development": {
-            "type": "mysql",
-            "username": "root",
-            "password": "123456",
-            "database": "insta",
-            "host": "localhost",
-            "port": 3306,
-            "pool": {
-                "max": 5,
-        		"min": 0,
-        		"idle": 10000
-            }
+        "type": "mysql",
+        "username": "root",
+        "password": "123456",
+        "database": "insta",
+        "host": "localhost",
+        "port": 3306,
+        "pool": {
+            "max": 5,
+    		"min": 0,
+    		"idle": 10000
         }
     }
 }

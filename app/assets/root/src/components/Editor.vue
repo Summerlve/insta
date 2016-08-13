@@ -7,7 +7,7 @@
                         <div class="fluid big ui top attached button" tabindex="0" id="hidden-the-image-selector">
                             Choose A Picture
                         </div>
-                        <input type="file" name="img" id="image-selector">
+                        <input type="file" name="image" id="image-selector">
                         <div class="ui attached center aligned segment">
                             <i class="file image outline icon" id="image-placeholder">
                             </i>

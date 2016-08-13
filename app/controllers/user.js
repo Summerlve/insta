@@ -6,12 +6,12 @@ module.exports.info = (req, res, next) => {
     const { userId } = req.session;
 
     User.findById(parseInt(userId, 10), {
-        attributes: ["username", "id", "github", "twitter"]
+        attributes: ["username", "github", "twitter"]
     }).then(user => {
         res.json(user);
-    }, error => {
+    }).catch(error => {
         next(error);
-    })
+    });
 };
 
 module.exports.update = (req, res, next) => {
@@ -26,6 +26,7 @@ module.exports.update = (req, res, next) => {
         twitter
     };
 
+    // remove fileds which does not need to be modified
     for (let key in changes)
     {
         if (changes[key] === undefined) delete changes[key];
@@ -35,8 +36,7 @@ module.exports.update = (req, res, next) => {
         return user.update(changes);
     }).then(_ => {
         res.json();
-    }).error(error => {
+    }).catch(error => {
         res.json();
     });
-
 };

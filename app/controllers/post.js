@@ -1,8 +1,9 @@
 "use strict";
 
 const Post = require("../models/post.js");
+const sequelize = require("../../db.js");
 
-module.exports.range = (req, res) => {
+module.exports.range = (req, res, next) => {
     let { pos, num = 1 } = req.query;
 
     // string->number
@@ -21,9 +22,21 @@ module.exports.range = (req, res) => {
         limit: num
     }).then(records => {
         res.json(records);
+    }).catch(error => {
+        next(error);
     });
 };
 
-module.exports.add = (req, res) => {
-    
+module.exports.add = (req, res, next) => {
+    const { filename: img } = req.file;
+    const { content } = req.body;
+    const post = { content, img };
+
+    sequelize.transaction(transaction => {
+        return Post.create(post, { transaction })
+    }).then(result => {
+        res.redirect("/page");
+    }).catch(error => {
+        next(error);
+    });
 };
