@@ -13,7 +13,7 @@ module.exports.range = (req, res, next) => {
     Post.findAll({
         where: {
             id: {
-                $lt: pos
+                $lte: pos
             }
         },
         order: [
@@ -33,8 +33,8 @@ module.exports.add = (req, res, next) => {
     const post = { content, img };
 
     sequelize.transaction(transaction => {
-        return Post.create(post, { transaction })
-    }).then(result => {
+        return Post.create(post, { transaction });
+    }).then(post => {
         res.redirect("/page");
     }).catch(error => {
         next(error);

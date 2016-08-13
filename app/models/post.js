@@ -2,7 +2,7 @@
 
 const Sequelize = require("sequelize");
 const moment = require("moment");
-const { sequelize, config: tz } = require("../../index.js");
+const { sequelize, config: { app: { timezone } } } = require("../../index.js");
 
 const Post = sequelize.define("post", {
 	id: {
@@ -29,16 +29,18 @@ const Post = sequelize.define("post", {
 		allowNull: false,
 		field: "create_at",
 		defaultValue() {
-			console.log(moment.utc().format("YYYY-MM-DDTHH:mm:ss"));
 			return moment.utc().format("YYYY-MM-DDTHH:mm:ss");
 		},
 		get() {
 			let createAt = this.getDataValue("createAt");
-			console.log(createAt);
+
+			// The Sequelize fucking logic, i do not understood
+			if (createAt instanceof Date) return createAt;
+
 			createAt = createAt.replace(" ", "T");
 			return moment(new Date(createAt).toISOString())
-					.utcOffset(tz)
-					.format("YYYY-MM-DD HH:mm:ss");
+					.utcOffset(timezone)
+					.format("YYYY-MM-DDTHH:mm:ss");
 		}
 	}
 });
