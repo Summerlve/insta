@@ -8,7 +8,7 @@ const uuid = require("node-uuid");
 const path = require("path");
 const page = require("./app/controllers/page.js");
 const root = require("./app/controllers/root.js");
-const user = require("./app/controllers/user.js");
+const setting = require("./app/controllers/setting.js");
 const filter = require("./app/controllers/filter.js");
 const auth = require("./app/controllers/auth.js");
 const post = require("./app/controllers/post.js");
@@ -42,10 +42,10 @@ router.post("/login", bodyParser.urlencoded({ extended: false }), auth.login);
 router.get("/logout", filter, auth.logout);
 
 // root
-router.get("/root", root);
+router.get("/root", filter, root);
 
 // setting user info
-router.get("/setting", filter, user.info);
-router.post("/setting", filter, user.update);
+router.get("/setting", filter, setting.info);
+router.post("/setting", filter, bodyParser.urlencoded({ extended: false }), setting.update);
 
 module.exports = router;

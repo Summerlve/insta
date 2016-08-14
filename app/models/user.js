@@ -2,10 +2,11 @@
 
 const Sequelize = require("sequelize");
 const { sequelize } = require("../../index.js");
+const md5 = require("md5");
 
 const User = sequelize.define("user", {
 	id: {
-		type: Sequelize.INTEGER(11),
+		type: Sequelize.INTEGER(255),
 		allowNull: false,
 		unique: true,
 		primaryKey: true,
@@ -13,13 +14,13 @@ const User = sequelize.define("user", {
 		field: "id"
 	},
 	username: {
-		type: Sequelize.STRING(40),
+		type: Sequelize.STRING(255),
 		allowNull: false,
 		unique: true,
 		field: "username"
 	},
 	password: {
-		type: Sequelize.STRING(40),
+		type: Sequelize.STRING(255),
 		allowNull: false,
 		unique: false,
 		field: "password"
@@ -39,5 +40,22 @@ const User = sequelize.define("user", {
 });
 
 sequelize.sync();
+
+// init data
+User.findOne({}).then(user => {
+	if (!user)
+	{
+		return sequelize.transaction(transaction => {
+	        return User.create({
+				username: "root",
+				password: md5("123456")
+			}, { transaction });
+	    }).then(user => {
+			console.log("init user");
+	    });
+	}
+}).catch(error => {
+	console.error(error);
+});
 
 module.exports = User;

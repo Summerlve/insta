@@ -35,6 +35,7 @@ module.exports.add = (req, res, next) => {
     sequelize.transaction(transaction => {
         return Post.create(post, { transaction });
     }).then(post => {
+        // transaction commited
         res.redirect("/page");
     }).catch(error => {
         next(error);

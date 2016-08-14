@@ -1,6 +1,7 @@
 "use strict";
 
 const User = require("../models/user.js");
+const md5 = require("md5");
 
 module.exports.index = (req, res, next) => {
     const { access } = req.session;
@@ -17,7 +18,7 @@ module.exports.login = (req, res, next) => {
     const { username, password } = req.body;
 
     User.findOne({
-        where: { username, password },
+        where: { username, password: md5(password) },
         attributes: ["username", "id"]
     }).then(user => {
         if (!user)

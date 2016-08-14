@@ -1,11 +1,11 @@
 <template>
     <div id="setting">
-        <form class="ui form">
+        <form class="ui form" action="/setting" method="POST">
             <div class="ui grid container">
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                     <div class="field">
                         <label>Username</label>
-                        <input type="text" name="first-name" placeholder="Username">
+                        <input type="text" name="username" placeholder="Username">
                     </div>
                 </div>
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
@@ -14,7 +14,7 @@
             </div>
         </form>
         <div class="ui divider"></div>
-        <form class="ui form">
+        <form class="ui form" action="/setting" method="POST">
             <div class="ui grid container">
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                     <div class="field">
@@ -34,7 +34,7 @@
             </div>
         </form>
         <div class="ui divider"></div>
-        <form class="ui form">
+        <form class="ui form" action="/setting" method="POST">
             <div class="ui grid container">
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                     <div class="field">
@@ -48,7 +48,7 @@
             </div>
         </form>
         <div class="ui divider"></div>
-        <form class="ui form">
+        <form class="ui form" action="/setting" method="POST">
             <div class="ui grid container">
                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                     <div class="field">

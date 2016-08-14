@@ -6,7 +6,7 @@ const { sequelize, config: { app: { timezone } } } = require("../../index.js");
 
 const Post = sequelize.define("post", {
 	id: {
-		type: Sequelize.INTEGER(11),
+		type: Sequelize.INTEGER(255),
 		allowNull: false,
 		unique: true,
 		primaryKey: true,

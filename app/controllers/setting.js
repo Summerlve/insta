@@ -1,6 +1,8 @@
 "use strict";
 
 const User = require("../models/user.js");
+const sequelize = require("../../db.js");
+const md5 = require("md5");
 
 module.exports.info = (req, res, next) => {
     const { userId } = req.session;
@@ -17,7 +19,9 @@ module.exports.info = (req, res, next) => {
 module.exports.update = (req, res, next) => {
     const { userId } = req.session;
 
-    const { username, password, github, twitter } = req.body;
+    console.log(req.body);
+
+    const { username, password, password_again, github, twitter } = req.body;
 
     let changes = {
         username,
@@ -32,11 +36,19 @@ module.exports.update = (req, res, next) => {
         if (changes[key] === undefined) delete changes[key];
     }
 
+    if (changes.password)
+    {
+        changes.password = md5(changes.password);
+    }
+
     User.findById(parseInt(userId, 10)).then(user => {
-        return user.update(changes);
-    }).then(_ => {
-        res.json();
+        return sequelize.transaction(transaction => {
+            return user.update(changes, { transaction });
+        });
+    }).then(userUpdated => {
+        // transaction commited
+        res.json({ error: 0, reason_phrase: "operation succeeded"});
     }).catch(error => {
-        res.json();
+        next(error);
     });
 };
