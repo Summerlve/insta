@@ -39,23 +39,27 @@ const User = sequelize.define("user", {
 	}
 });
 
-sequelize.sync();
-
-// init data
-User.findOne({}).then(user => {
-	if (!user)
-	{
-		return sequelize.transaction(transaction => {
-	        return User.create({
-				username: "root",
-				password: md5("123456")
-			}, { transaction });
-	    }).then(user => {
-			console.log("init user");
-	    });
-	}
-}).catch(error => {
-	console.error(error);
+sequelize.sync().then(_ => {
+	// init data
+	User.findOne({}).then(user => {
+		if (!user)
+		{
+			return sequelize.transaction(transaction => {
+			    return User.create({
+					username: "root",
+					password: md5("123456")
+				}, { transaction });
+			});
+		}
+		else
+		{
+			return "inited";
+		}
+	}).then(result => {
+		console.log(result);
+	}).catch(error => {
+		console.error(error);
+	});
 });
 
 module.exports = User;

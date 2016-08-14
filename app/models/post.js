@@ -34,7 +34,7 @@ const Post = sequelize.define("post", {
 		get() {
 			let createAt = this.getDataValue("createAt");
 
-			// The Sequelize fucking logic, i do not understood
+			// I do not understand the Sequelize fucking logic, 
 			if (createAt instanceof Date) return createAt;
 
 			createAt = createAt.replace(" ", "T");

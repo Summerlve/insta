@@ -1,5 +1,5 @@
 ### Introductions
-    This web app just like instagram, but less then its function, Only single user picture blog.
+    This web app just like instagram, but less functions. Only single user picture blog.
     This app is licensed under a MIT license.
 
 
@@ -16,7 +16,31 @@
 may be some open source project doesn't in this list.
 
 
+### Deployment
+
+1. install Node.js v6.2.0+
+
+2. npm install pm2 -g
+
+3. install MySQL v5.7.11+
+
+4. install nginx
+
+5. git clone /link/to/this/program to your server
+
+6. cd /path/to/this/program & npm install
+
+7. cd /path/to/this/program/app/assets/page & npm install & npm run build
+
+8. cd /path/to/this/program/app/assets/root & npm install & npm run build
+
+9. start program using pm2, listening the local port, use nginx to reverse proxy
+
+
 ### GUI
+
+The following picture pictures may be a little different from the real programs
+
 login interface, /login    
 ![login interface](./images/login.png)
 
