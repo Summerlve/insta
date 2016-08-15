@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <post-table-view></post-table-view>
+        <post-table-view :post-list="postList"></post-table-view>
         <div class="ui active centered inline loader"></div>
     </div>
 </template>
@@ -23,12 +23,43 @@
     import PostTableView from "./components/PostTableView"
 
     export default {
+        ready() {
+            $.ajax({
+				url: "/setting",
+				dataType: "json",
+				method: "GET",
+
+			}).done(user => {
+                this.$data.user.username = user.username;
+                this.$data.user.github = user.username;
+                this.$data.user.twitter = user.twitter;
+            }).fail(error => {
+                alert(error);
+            });
+
+            const initNum = 5;
+
+            $.ajax({
+				url: `/post?init=1&num=${initNum}`,
+				dataType: "json",
+				method: "GET",
+			}).done(postList => {
+                this.$data.postList = postList;
+            }).fail(error => {
+                alert(error);
+            });
+        },
         components: {
             PostTableView
         },
         data() {
             return {
-                username: "Summer"
+                user: {
+                    username: "",
+                    github: "",
+                    twitter: ""
+                },
+                postList: []
             }
         }
     }

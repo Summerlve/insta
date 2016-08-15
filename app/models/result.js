@@ -1,13 +1,16 @@
+"use strict";
+
 module.exports = class Result {
-    constrcutor(errorCode, reasonPhrase) {
+    constructor(errorCode, reasonPhrase) {
+        console.log(errorCode, reasonPhrase);
         this.errorCode = errorCode;
         this.reasonPhrase = reasonPhrase;
     }
 
     toJSON() {
         return {
-            error_code: this.errorCode
+            error_code: this.errorCode,
             reason_phrase: this.reasonPhrase
         };
     }
-}
+};

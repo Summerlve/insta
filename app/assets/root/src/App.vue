@@ -10,7 +10,7 @@
                      <a href="/logout">logOut</a>
                 </h4>
                 <div class="ui divider"></div>
-                <router-view></router-view>
+                <router-view keep-alive></router-view>
             </div>
         </div>
     </div>

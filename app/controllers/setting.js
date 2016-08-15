@@ -20,13 +20,11 @@ module.exports.info = (req, res, next) => {
 module.exports.update = (req, res, next) => {
     const { userId } = req.session;
 
-    console.log(req.body);
-
     const { username, password, password_again, github, twitter } = req.body;
 
     if ((password && password_again) && (password !== password_again))
     {
-        return res.json(new Result(1, "two passwords are not the same"));
+        return res.text("two passwords are not consistent");
     }
 
     let changes = {
@@ -53,7 +51,8 @@ module.exports.update = (req, res, next) => {
         });
     }).then(userUpdated => {
         // transaction commited
-        res.json(new Result(0, "operation succeeded"));
+        req.session.destroy(); // destroy the session
+        res.redirect("/login"); // redirect to /root
     }).catch(error => {
         next(error);
     });

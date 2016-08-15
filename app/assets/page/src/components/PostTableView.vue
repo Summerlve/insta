@@ -1,8 +1,8 @@
 <template>
     <div class="ui sixteen column grid container" id="post-table-view">
         <post-item-view
-            v-for="item in items"
-            :item="item"
+            v-for="post in postList"
+            :post="post"
             :index="$index">
         </post-item-view>
     </div>
@@ -17,9 +17,10 @@
         },
         data() {
             return {
-                items: [{}, {}, {}]
+
             }
-        }
+        },
+        props: ["postList"]
     }
 </script>
 

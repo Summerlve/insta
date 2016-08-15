@@ -3,11 +3,11 @@
         <div class="column centered">
             <div class="ui fluid card">
                 <div class="image">
-                    <img :src="image">
+                    <img :src="post.img">
                 </div>
                 <div class="content">
                     <div class="description">
-                        {{ content }}
+                        {{ post.content }}
                     </div>
                 </div>
             </div>
@@ -19,11 +19,10 @@
     export default {
         data() {
             return {
-                image: "/static/images/1.jpg",
-                content: `中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国中国
-                        Kristy is an art director living in New York. Kristy is an art director living in New York.`
+
             }
-        }
+        },
+        props: ["post"]
     }
 </script>
 

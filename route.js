@@ -12,6 +12,7 @@ const setting = require("./app/controllers/setting.js");
 const filter = require("./app/controllers/filter.js");
 const auth = require("./app/controllers/auth.js");
 const post = require("./app/controllers/post.js");
+const stringToNumber = require("./app/controllers/stringToNumber.js");
 
 // router init
 const router = express.Router();
@@ -33,7 +34,7 @@ router.get("/page", page.index);
 router.get("/index", page.index);
 
 // post
-router.get("/post", post.range);
+router.get("/post", stringToNumber(["pos", "init", "num"]), post.range);
 router.post("/post", multer({ storage }).single("image"), post.add);
 
 // login
