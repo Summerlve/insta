@@ -6,10 +6,10 @@ const sequelize = require("../../db.js");
 module.exports.range = (req, res, next) => {
     let { pos, num, init } = req.query;
 
-    // string->number
-    pos = parseInt(pos, 10);
-    num = parseInt(num, 10);
-    init = parseInt(init, 10);
+    if (init === 1)
+    {
+        
+    }
 
     Post.findAll({
         where: {
