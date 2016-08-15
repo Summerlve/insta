@@ -3,6 +3,7 @@
 const User = require("../models/user.js");
 const sequelize = require("../../db.js");
 const md5 = require("md5");
+const Result = require("../models/result.js");
 
 module.exports.info = (req, res, next) => {
     const { userId } = req.session;
@@ -22,6 +23,11 @@ module.exports.update = (req, res, next) => {
     console.log(req.body);
 
     const { username, password, password_again, github, twitter } = req.body;
+
+    if ((password && password_again) && (password !== password_again))
+    {
+        return res.json(new Result(1, "two passwords are not the same"));
+    }
 
     let changes = {
         username,
@@ -47,7 +53,7 @@ module.exports.update = (req, res, next) => {
         });
     }).then(userUpdated => {
         // transaction commited
-        res.json({ error: 0, reason_phrase: "operation succeeded"});
+        res.json(new Result(0, "operation succeeded"));
     }).catch(error => {
         next(error);
     });
