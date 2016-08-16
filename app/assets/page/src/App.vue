@@ -15,6 +15,13 @@
             </div>
         </div>
         <post-table-view :post-list="postList"></post-table-view>
+        <div class="ui sixteen column grid container">
+            <div class="doubling two column row custom-row">
+                <div class="column centered">
+                    <button id="load-more" class="fluid big ui mini basic button" type="button">More</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -23,6 +30,11 @@
 
     export default {
         ready() {
+            // load more event
+            $("#load-more").on("click", event => {
+                console.log("load more");
+            });
+
             $.ajax({
 				url: "/setting",
 				dataType: "json",
