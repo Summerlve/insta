@@ -3,19 +3,18 @@
         <div class="ui segments">
             <div class="ui horizontal segments">
                 <div class="ui center aligned segment">
-                    <span>{{ username }}</span>
+                    <span>{{ user.username }}</span>
                     <span class="custom-horizontal-space"></span>
                     <span>
-                        <i class="github link icon" href="https://github.com/Summerlve"></i>
+                        <i class="github link icon" href="{{ user.github }}"></i>
                     </span>
                     <span>
-                        <i class="twitter link icon" href="https://twitter.com/Summer_Code"></i>
+                        <i class="twitter link icon" href="{{ user.twitter }}"></i>
                     </span>
                 </div>
             </div>
         </div>
         <post-table-view :post-list="postList"></post-table-view>
-        <div class="ui active centered inline loader"></div>
     </div>
 </template>
 
@@ -27,11 +26,10 @@
             $.ajax({
 				url: "/setting",
 				dataType: "json",
-				method: "GET",
-
+				method: "GET"
 			}).done(user => {
                 this.$data.user.username = user.username;
-                this.$data.user.github = user.username;
+                this.$data.user.github = user.github;
                 this.$data.user.twitter = user.twitter;
             }).fail(error => {
                 alert(error);
@@ -40,7 +38,7 @@
             const initNum = 5;
 
             $.ajax({
-				url: `/post?init=1&num=${initNum}`,
+				url: `/post?&pos=0&num=${initNum}`,
 				dataType: "json",
 				method: "GET",
 			}).done(postList => {

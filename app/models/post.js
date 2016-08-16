@@ -1,8 +1,9 @@
 "use strict";
 
+const path = require("path");
 const Sequelize = require("sequelize");
 const moment = require("moment");
-const { sequelize, config: { app: { timezone } } } = require("../../index.js");
+const { sequelize, config: { app: { timezone } }, storeImgPath } = require("../../index.js");
 
 const Post = sequelize.define("post", {
 	id: {
@@ -22,7 +23,10 @@ const Post = sequelize.define("post", {
 		type: Sequelize.STRING(255),
 		allowNull: false,
 		unique: true,
-		field: "img"
+		field: "img",
+        get() {
+            return  `/static/images/${this.getDataValue("img")}`;
+        }
 	},
 	createAt: {
 		type: Sequelize.DATE,
@@ -34,7 +38,7 @@ const Post = sequelize.define("post", {
 		get() {
 			let createAt = this.getDataValue("createAt");
 
-			// I do not understand the Sequelize fucking logic, 
+			// I do not understand the Sequelize fucking logic,
 			if (createAt instanceof Date) return createAt;
 
 			createAt = createAt.replace(" ", "T");

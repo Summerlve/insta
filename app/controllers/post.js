@@ -4,11 +4,21 @@ const Post = require("../models/post.js");
 const sequelize = require("../../db.js");
 
 module.exports.range = (req, res, next) => {
-    let { pos, num, init } = req.query;
+    let { pos, num } = req.query;
 
-    if (init === 1)
+    if (pos === 0)
     {
-        
+        // init data
+        return Post.findAll({
+            order: [
+                ["create_at", "DESC"]
+            ],
+            limit: num
+        }).then(records => {
+            res.json(records);
+        }).catch(error => {
+            next(error);
+        });
     }
 
     Post.findAll({

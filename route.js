@@ -34,7 +34,7 @@ router.get("/page", page.index);
 router.get("/index", page.index);
 
 // post
-router.get("/post", stringToNumber(["pos", "init", "num"]), post.range);
+router.get("/post", stringToNumber(["pos", "num"]), post.range);
 router.post("/post", multer({ storage }).single("image"), post.add);
 
 // login
@@ -46,7 +46,7 @@ router.get("/logout", filter, auth.logout);
 router.get("/root", filter, root);
 
 // setting user info
-router.get("/setting", filter, setting.info);
+router.get("/setting", setting.info);
 router.post("/setting", filter, bodyParser.urlencoded({ extended: false }), setting.update);
 
 module.exports = router;

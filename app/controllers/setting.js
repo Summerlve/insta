@@ -8,7 +8,7 @@ const Result = require("../models/result.js");
 module.exports.info = (req, res, next) => {
     const { userId } = req.session;
 
-    User.findById(parseInt(userId, 10), {
+    User.findOne({
         attributes: ["username", "github", "twitter"]
     }).then(user => {
         res.json(user);
