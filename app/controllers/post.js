@@ -11,7 +11,7 @@ module.exports.range = (req, res, next) => {
         // init data
         return Post.findAll({
             order: [
-                ["create_at", "DESC"]
+                ["id", "DESC"]
             ],
             limit: num
         }).then(records => {
@@ -28,7 +28,7 @@ module.exports.range = (req, res, next) => {
             }
         },
         order: [
-            ["create_at", "DESC"]
+            ["id", "DESC"]
         ],
         limit: num
     }).then(records => {

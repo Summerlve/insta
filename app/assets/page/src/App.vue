@@ -28,11 +28,31 @@
 <script>
     import PostTableView from "./components/PostTableView"
 
+    function min(array) {
+        return array.sort((pre, lat) => lat - pre)[array.length - 1];
+    }
+
     export default {
         ready() {
+            const num = 5;
+            let pos = 0;
+            
             // load more event
             $("#load-more").on("click", event => {
-                console.log("load more");
+                $.ajax({
+                    url: `/post?&pos=${pos}&num=${num}`,
+                    dataType: "json",
+                    method: "GET",
+                }).done(postList => {
+                    if (postList.length === 0)
+                    {
+                    }
+
+                    this.$data.postList.push(postList);
+                    pos = min(postList.map(post => post.id)) - 1;
+                }).fail(error => {
+                    alert(error);
+                });
             });
 
             $.ajax({
@@ -47,14 +67,13 @@
                 alert(error);
             });
 
-            const initNum = 5;
-
             $.ajax({
-				url: `/post?&pos=0&num=${initNum}`,
+				url: `/post?&pos=0&num=${num}`,
 				dataType: "json",
 				method: "GET",
 			}).done(postList => {
                 this.$data.postList = postList;
+                pos = min(postList.map(post => post.id)) - 1;
             }).fail(error => {
                 alert(error);
             });
@@ -69,7 +88,8 @@
                     github: "",
                     twitter: ""
                 },
-                postList: []
+                postList: [],
+                loadMore: true
             }
         }
     }
