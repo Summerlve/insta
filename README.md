@@ -16,7 +16,7 @@
 may be some open source project doesn't in this list.
 
 
-### Deployment
+### Installation
 
 1. install Node.js v6.2.0+
 
@@ -34,26 +34,38 @@ may be some open source project doesn't in this list.
 
 8. cd /path/to/this/program/app/assets/root & npm install & npm run build
 
-9. start program using pm2, listening the local port, use nginx to reverse proxy
+9. start program using pm2, listening the local port, use nginx for reverse proxy
 
+### Config
+    Change the config.json file for custom configs
+    The initial account: {
+        username: "root"
+        password: "123456"
+    }
 
 ### GUI
 
 The following picture pictures may be a little different from the real programs
 
-login interface, /login    
+page interface, '/' or '/page' or '/index'  
+![login interface](./images/page-pc.png)
+
+page phone  
+![login interface](./images/page-phone.png)
+
+login interface, /login  
 ![login interface](./images/login.png)
 
 editor interface, /root#!/editor    
 ![editor interface](./images/editor.png)
 
-select image on pc    
+select image on pc  
 ![select image interface](./images/select-img-pc.png)
 
-select image on phone    
+select image on phone  
 ![select image interface](./images/select-img-phone.png)
 
-setting interface on pc    
+setting interface on pc  
 ![setting interface](./images/setting-pc.png)
 
 setting interface on phone  

@@ -30,4 +30,9 @@
     #post-table-view .custom-row:first-child {
         margin-top: 16px;
     }
+
+    .description {
+        word-break: break-all;
+    　　word-wrap: break-word;
+    }
 </style>

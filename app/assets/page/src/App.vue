@@ -18,7 +18,7 @@
         <div class="ui sixteen column grid container">
             <div class="doubling two column row custom-row">
                 <div class="column centered">
-                    <button id="load-more" class="fluid big ui mini basic button" type="button">More</button>
+                    <button  v-bind:class="{ disabled: loadMore }" id="load-more" class="fluid ui mini button" type="button">More</button>
                 </div>
             </div>
         </div>
@@ -34,9 +34,9 @@
 
     export default {
         ready() {
-            const num = 5;
+            const num = 5; // page num
             let pos = 0;
-            
+
             // load more event
             $("#load-more").on("click", event => {
                 $.ajax({
@@ -46,20 +46,28 @@
                 }).done(postList => {
                     if (postList.length === 0)
                     {
+                        this.$data.loadMore = true;
+                        return ;
                     }
 
-                    this.$data.postList.push(postList);
+                    if (postList.length < num)
+                    {
+                        this.$data.loadMore = true;
+                    }
+
+                    this.$data.postList.push(...postList);
                     pos = min(postList.map(post => post.id)) - 1;
                 }).fail(error => {
                     alert(error);
                 });
             });
 
+            // get user info
             $.ajax({
-				url: "/setting",
-				dataType: "json",
-				method: "GET"
-			}).done(user => {
+                url: "/setting",
+                dataType: "json",
+                method: "GET"
+            }).done(user => {
                 this.$data.user.username = user.username;
                 this.$data.user.github = user.github;
                 this.$data.user.twitter = user.twitter;
@@ -67,16 +75,22 @@
                 alert(error);
             });
 
+            // get init data
             $.ajax({
-				url: `/post?&pos=0&num=${num}`,
-				dataType: "json",
-				method: "GET",
-			}).done(postList => {
+                url: `/post?&pos=0&num=${num}`,
+                dataType: "json",
+                method: "GET",
+            }).done(postList => {
                 this.$data.postList = postList;
                 pos = min(postList.map(post => post.id)) - 1;
             }).fail(error => {
                 alert(error);
             });
+
+            $("i.link").on("click", event => {
+                const link = $(event.currentTarget).attr("href");
+                location.href = link;
+            })
         },
         components: {
             PostTableView
@@ -89,7 +103,7 @@
                     twitter: ""
                 },
                 postList: [],
-                loadMore: true
+                loadMore: false
             }
         }
     }
