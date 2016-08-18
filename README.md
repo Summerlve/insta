@@ -58,8 +58,7 @@ may be some open source project doesn't in this list.
 
 9. start program using pm2, listening the local port, use nginx for reverse proxy
 
-### Config
-    Change the config.json file for custom configs
+### The init account
     The initial account: {
         username: "root"
         password: "123456"
