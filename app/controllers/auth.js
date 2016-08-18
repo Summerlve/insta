@@ -12,6 +12,8 @@ module.exports.index = (req, res, next) => {
         if (error) next(error);
         res.send(html);
     });
+
+    next();
 };
 
 module.exports.login = (req, res, next) => {

@@ -35,7 +35,25 @@
     export default {
         ready() {
             const num = 5; // page num
-            let pos = 0;
+            let pos = -1;
+
+            // data handler
+            const dataHandler =  postList => {
+                if (postList.length === 0)
+                {
+                    this.$data.loadMore = true;
+                    return ;
+                }
+
+                if (postList.length < num)
+                {
+                    this.$data.loadMore = true;
+                }
+
+                this.$data.postList.push(...postList);
+                pos = min(postList.map(post => post.id)) - 1;
+                console.log(pos);
+            };
 
             // load more event
             $("#load-more").on("click", event => {
@@ -43,21 +61,9 @@
                     url: `/post?&pos=${pos}&num=${num}`,
                     dataType: "json",
                     method: "GET",
-                }).done(postList => {
-                    if (postList.length === 0)
-                    {
-                        this.$data.loadMore = true;
-                        return ;
-                    }
-
-                    if (postList.length < num)
-                    {
-                        this.$data.loadMore = true;
-                    }
-
-                    this.$data.postList.push(...postList);
-                    pos = min(postList.map(post => post.id)) - 1;
-                }).fail(error => {
+                })
+                .done(dataHandler)
+                .fail(error => {
                     alert(error);
                 });
             });
@@ -77,13 +83,12 @@
 
             // get init data
             $.ajax({
-                url: `/post?&pos=0&num=${num}`,
+                url: `/post?&pos=${pos}&num=${num}`,
                 dataType: "json",
                 method: "GET",
-            }).done(postList => {
-                this.$data.postList = postList;
-                pos = min(postList.map(post => post.id)) - 1;
-            }).fail(error => {
+            })
+            .done(dataHandler)
+            .fail(error => {
                 alert(error);
             });
 

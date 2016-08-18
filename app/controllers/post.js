@@ -6,7 +6,7 @@ const sequelize = require("../../db.js");
 module.exports.range = (req, res, next) => {
     let { pos, num } = req.query;
 
-    if (pos === 0)
+    if (pos === -1)
     {
         // init data
         return Post.findAll({
@@ -44,11 +44,14 @@ module.exports.add = (req, res, next) => {
     const post = { content, img };
 
     sequelize.transaction(transaction => {
+        console.log(transaction);
         return Post.create(post, { transaction });
     }).then(post => {
         // transaction commited
+        console.log("insert");
         res.redirect("/page");
     }).catch(error => {
+        console.log(error);
         next(error);
     });
 };

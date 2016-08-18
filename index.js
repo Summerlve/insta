@@ -3,6 +3,10 @@
 const path = require("path");
 const express = require("express");
 const app = express();
+const helmet = require("helmet");
+
+// use helmet
+app.use(helmet());
 
 // app root dir
 const appRoot = __dirname
@@ -50,6 +54,13 @@ app.use("/", router);
 // load error handle
 const errorHandle = require("./app/controllers/error.js");
 app.use(errorHandle);
+
+// 404 handler
+app.use((req, res, next) =>{
+    res.render("notFound.html", {}, (error, html) => {
+        res.send(html);
+    });
+});
 
 // listen port, default port is 9000 just for test
 const { app: { host, port } } = config;
