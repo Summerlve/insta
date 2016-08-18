@@ -28,36 +28,26 @@ may be some open source project doesn't in this list.
 
 5. git clone /link/to/this/program , and touch `config.json` in the program top level folder.
     ```javascript
-    {
-      "name": "insta",
-      "version": "1.0.0",
-      "description": "instagram like app",
-      "main": "index.js",
-      "scripts": {
-        "start": "echo \"Error: no test specified\" && exit 1",
-        "dev": "supervisor ./index.js"
-      },
-      "author": "Summerlve",
-      "license": "MIT",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/Summerlve/insta"
-      },
-      "dependencies": {
-        "body-parser": "^1.15.2",
-        "compression": "^1.6.2",
-        "ejs": "^2.5.1",
-        "express": "^4.14.0",
-        "express-session": "^1.14.0",
-        "helmet": "^2.1.2",
-        "md5": "^2.1.0",
-        "moment": "^2.14.1",
-        "multer": "^1.2.0",
-        "mysql": "^2.11.1",
-        "node-uuid": "^1.4.7",
-        "sequelize": "^3.23.6"
-      }
-    }
+        {
+            "app": {
+                "port": 9000,
+                "host": "localhost",
+                "timezone": "+08:00"
+            },
+            "db": {
+                "type": "mysql",
+                "username": "root",
+                "password": "123456",
+                "database": "insta",
+                "host": "localhost",
+                "port": 3306,
+                "pool": {
+                    "max": 5,
+                    "min": 0,
+                    "idle": 10000
+                }
+            }
+        }
     ```
 
 6. cd /path/to/this/program & npm install
