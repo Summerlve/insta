@@ -52,7 +52,6 @@
 
                 this.$data.postList.push(...postList);
                 pos = min(postList.map(post => post.id)) - 1;
-                console.log(pos);
             };
 
             // load more event
@@ -92,8 +91,15 @@
                 alert(error);
             });
 
+            // icon click handler
             $("i.link").on("click", event => {
                 const link = $(event.currentTarget).attr("href");
+                if (!link)
+                {
+                    alert("have no link");
+                    return false;
+                }
+
                 location.href = link;
             })
         },

@@ -22,11 +22,11 @@ may be some open source project doesn't in this list.
 
 2. npm install pm2 -g
 
-3. install MySQL v5.7.11+
+3. install MySQL v5.7.11+ , and set the encoding to utf8
 
 4. install nginx
 
-5. git clone /link/to/this/program to your server
+5. git clone /link/to/this/program , and touch `config.json` in the program top level folder.
 
 6. cd /path/to/this/program & npm install
 
