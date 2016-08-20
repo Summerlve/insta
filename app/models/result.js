@@ -2,7 +2,6 @@
 
 module.exports = class Result {
     constructor(errorCode, reasonPhrase) {
-        console.log(errorCode, reasonPhrase);
         this.errorCode = errorCode;
         this.reasonPhrase = reasonPhrase;
     }

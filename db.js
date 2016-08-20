@@ -20,7 +20,8 @@ const sequelize = new Sequelize(database, username, password, {
 		freezeTableName: true,
 		timestamps: false
 	},
-	timezone
+	timezone,
+    logging: false
 });
 
 module.exports = sequelize;

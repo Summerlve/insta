@@ -56,9 +56,7 @@ sequelize.sync().then(_ => {
 			return "inited";
 		}
 	}).then(result => {
-		console.log(result);
 	}).catch(error => {
-		console.error(error);
 	});
 });
 

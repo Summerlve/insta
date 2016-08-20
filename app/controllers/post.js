@@ -41,17 +41,20 @@ module.exports.range = (req, res, next) => {
 module.exports.add = (req, res, next) => {
     const { filename: img } = req.file;
     const { content } = req.body;
+
+    if (!img || !content)
+    {
+        return res.redirect("/root");
+    }
+
     const post = { content, img };
 
     sequelize.transaction(transaction => {
-        console.log(transaction);
         return Post.create(post, { transaction });
     }).then(post => {
         // transaction commited
-        console.log("insert");
         res.redirect("/page");
     }).catch(error => {
-        console.log(error);
         next(error);
     });
 };
