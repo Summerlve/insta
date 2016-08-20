@@ -43,6 +43,8 @@ jspm_packages
 # ignore build file
 public/assets/page
 public/assets/root
+app/views/page.html
+app/views/root.html
 
 # ignore config.json
 config.json

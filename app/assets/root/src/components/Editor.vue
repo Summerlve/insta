@@ -7,7 +7,7 @@
                         <div class="fluid big ui top attached button" tabindex="0" id="hidden-the-image-selector">
                             Choose A Picture
                         </div>
-                        <input type="file" name="image" id="image-selector">
+                        <input type="file" name="image" id="image-selector" required="required">
                         <div class="ui attached center aligned segment">
                             <i class="file image outline icon" id="image-placeholder">
                             </i>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column">
                         <div class="field">
-                             <input type="text" name="content" placeholder="content">
+                             <input type="text" name="content" placeholder="content" required="required">
                         </div>
                     </div>
                 </div>
