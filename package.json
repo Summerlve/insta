@@ -14,17 +14,20 @@
     "url": "https://github.com/Summerlve/insta"
   },
   "dependencies": {
+    "archiver": "^1.0.1",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "fs-extra": "^0.30.0",
     "helmet": "^2.1.2",
     "md5": "^2.1.0",
     "moment": "^2.14.1",
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "node-uuid": "^1.4.7",
-    "sequelize": "^3.23.6"
+    "sequelize": "^3.23.6",
+    "unzip": "^0.1.11"
   }
 }
