@@ -1,7 +1,5 @@
 "use strict";
 
-const md5 = require("md5");
-
 module.exports = function(sequelize, Sequelize) {
     const User = sequelize.define("user", {
         id: {

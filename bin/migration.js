@@ -61,6 +61,7 @@ archive.on("error", error => {
 archive.on("end", _ => {
     fse.removeSync(outImgPath);
     fse.removeSync(outDBPath);
+    console.log("Migration completed");
 });
 
 archive.pipe(zipFileStream);

@@ -1,5 +1,6 @@
 "use strict";
 
+const md5 = require("md5");
 const Sequelize = require("sequelize");
 const config = require("./config.json");
 
