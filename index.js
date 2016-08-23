@@ -14,13 +14,12 @@ module.exports.appRoot = appRoot;
 
 // app config
 const config = require("./config.json");
-module.exports.config = config;
 
 // image store path
 module.exports.storeImgPath = path.join(__dirname, "public", "images");
 
 // db init
-module.exports.sequelize = require("./db.js");
+require("./db.js");
 
 // gzip
 const compression = require("compression");

@@ -1,6 +1,5 @@
 "use strict";
 
-const auth = require("./auth.js");
 const Result = require("../models/result.js");
 
 module.exports = (req, res, next) => {

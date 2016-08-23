@@ -1,6 +1,6 @@
 "use strict";
 
-const User = require("../models/user.js");
+const User = require("../../db.js").User;
 const md5 = require("md5");
 
 module.exports.index = (req, res, next) => {

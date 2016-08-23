@@ -1,7 +1,6 @@
 "use strict";
 
-const Post = require("../models/post.js");
-const sequelize = require("../../db.js");
+const { Post, sequelize } = require("../../db.js");
 
 module.exports.range = (req, res, next) => {
     let { pos, num } = req.query;

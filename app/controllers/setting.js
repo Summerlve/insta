@@ -1,7 +1,6 @@
 "use strict";
 
-const User = require("../models/user.js");
-const sequelize = require("../../db.js");
+const { User, sequelize } = require("../../db.js");
 const md5 = require("md5");
 const Result = require("../models/result.js");
 

@@ -1,8 +1,7 @@
 "use strict";
 
 const Sequelize = require("sequelize");
-
-const { config } = require("./index.js");
+const config = require("./config.json");
 
 // get config
 const { type, username, password, database, host, port, pool } = config.db;
@@ -24,4 +23,31 @@ const sequelize = new Sequelize(database, username, password, {
     logging: false
 });
 
-module.exports = sequelize;
+const Post = require("./app/models/post.js")(sequelize, Sequelize);
+const User = require("./app/models/user.js")(sequelize, Sequelize);
+
+sequelize.sync().then(_ => {
+	// init data
+	User.findOne({}).then(user => {
+		if (!user)
+		{
+			return sequelize.transaction(transaction => {
+			    return User.create({
+					username: "root",
+					password: md5("123456")
+				}, { transaction });
+			});
+		}
+		else
+		{
+			return "inited";
+		}
+	}).then(result => {
+	}).catch(error => {
+	});
+});
+
+module.exports.Post = Post;
+module.exports.User = User;
+module.exports.sequelize = sequelize;
+module.exports.Sequelize = Sequelize;
