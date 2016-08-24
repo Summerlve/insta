@@ -12,18 +12,20 @@ zip.extractAllTo(backUpPath, true);
 
 // recovery the db
 const Sequelize = require("sequelize");
+const config = require("../config.json");
 const { type, username, password, database, host, port } = config.db;
+const { timezone } = config.app;
 const outDBPath = path.join(__dirname, "..", "backup", "db.txt");
 
 const sequelize = new Sequelize(database, username, password, {
-	host: host,
-	dialect: type,
-	port: port,
-	define: {
-		freezeTableName: true,
-		timestamps: false
-	},
-	timezone,
+    host: host,
+    dialect: type,
+    port: port,
+    define: {
+        freezeTableName: true,
+        timestamps: false
+    },
+    timezone,
     logging: false
 });
 
@@ -33,8 +35,7 @@ sequelize.sync().then(_ => {
     return sequelize.query(
         `load data infile "${outDBPath}" into table post
         fields terminated by "\t" lines terminated by "\r\n"
-        (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`,
-    );
+        (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`);
 }).then(_ => {
     // recovery the images
     const fse = require("fs-extra");
@@ -42,18 +43,17 @@ sequelize.sync().then(_ => {
     const recoveryImgPath = path.join(__dirname, "..", "backup", "images");
 
     // copy images
-    try {
-        fse.copySync(recoveryImgPath, originImgPath);
-    } catch (e) {
-        console.error(e);
-    }
+    fse.copySync(recoveryImgPath, originImgPath);
 
     // remove extract files
     fse.removeSync(outDBPath);
     fse.removeSync(recoveryImgPath);
 
+    sequelize.close();
+
     console.log("Recovery completed");
 }).catch(error => {
-    if (error) throw console.error(error);
+    sequelize.close();
+    throw error;
 });
 

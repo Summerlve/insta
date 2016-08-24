@@ -3,15 +3,13 @@
 
 const path = require("path");
 
-// empty the backup folder
+// delete some files in  backup folder
 const fse = require("fs-extra");
 const backUpPath = path.join(__dirname, "..", "backup");
 
-try {
-    fse.emptyDirSync(backUpPath);
-} catch (error) {
-    console.error(error);
-}
+fse.removeSync(path.join(backUpPath, "db.txt"));
+fse.removeSync(path.join(backUpPath, "images"));
+fse.removeSync(path.join(backUpPath, "insta_backup.zip"));
 
 // migrate the db
 const mysql = require("mysql");
@@ -31,8 +29,9 @@ connection.query(
     `select content, img, create_at from post order by create_at
     into outfile "${outDBPath}"
     fields terminated by "\t" lines terminated by "\r\n"`,
-    function(err, rows, fields) {
-        if (err) throw err;
+    function(error, rows, fields) {
+
+        if (error) throw error;
 
         // migrate the images
         const fs = require("fs");
@@ -40,18 +39,10 @@ connection.query(
         const outImgPath = path.join(__dirname, "..", "backup", "images");
 
         // mkdir
-        try {
-            fs.mkdirSync(outImgPath);
-        } catch (e) {
-            console.error(e);
-        }
+        fs.mkdirSync(outImgPath);
 
         // copy images
-        try {
-            fse.copySync(originImgPath, outImgPath);
-        } catch (e) {
-            console.error(e);
-        }
+        fse.copySync(originImgPath, outImgPath);
 
         // compress the files
         const archiver = require('archiver');
@@ -67,6 +58,10 @@ connection.query(
         archive.on("end", _ => {
             fse.removeSync(outImgPath);
             fse.removeSync(outDBPath);
+
+            // close the sql connection
+            connection.end();
+
             console.log("Backup completed");
         });
 
@@ -80,6 +75,3 @@ connection.query(
         archive.finalize();
     }
 );
-
-connection.end();
-

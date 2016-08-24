@@ -12,15 +12,15 @@ const { timezone } = config.app;
 
 // sequelize init
 const sequelize = new Sequelize(database, username, password, {
-	host: host,
-	dialect: type,
-	port: port,
-	pool: pool,
-	define: {
-		freezeTableName: true,
-		timestamps: false
-	},
-	timezone,
+    host: host,
+    dialect: type,
+    port: port,
+    pool: pool,
+    define: {
+        freezeTableName: true,
+        timestamps: false
+    },
+    timezone,
     logging: false
 });
 
@@ -28,24 +28,24 @@ const Post = require("./app/models/post.js")(sequelize, Sequelize);
 const User = require("./app/models/user.js")(sequelize, Sequelize);
 
 sequelize.sync().then(_ => {
-	// init data
-	User.findOne({}).then(user => {
-		if (!user)
-		{
-			return sequelize.transaction(transaction => {
-			    return User.create({
-					username: "root",
-					password: md5("123456")
-				}, { transaction });
-			});
-		}
-		else
-		{
-			return "inited";
-		}
-	}).then(result => {
-	}).catch(error => {
-	});
+    // init data
+    User.findOne({}).then(user => {
+        if (!user)
+        {
+            return sequelize.transaction(transaction => {
+                return User.create({
+                    username: "root",
+                    password: md5("123456")
+                }, { transaction });
+            });
+        }
+        else
+        {
+            return "inited";
+        }
+    }).then(result => {
+    }).catch(error => {
+    });
 });
 
 module.exports.Post = Post;
