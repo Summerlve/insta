@@ -54,6 +54,6 @@ sequelize.sync().then(_ => {
     console.log("Recovery completed");
 }).catch(error => {
     sequelize.close();
-    throw error;
+    console.error(error);
 });
 

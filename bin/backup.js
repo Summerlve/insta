@@ -50,7 +50,13 @@ connection.query(
         const zipFileStream = fs.createWriteStream(zipFilePath);
         const archive = archiver("zip");
 
+        // remove temp files when zip failed, db.txt and images folder
         archive.on("error", error => {
+            fse.removeSync(outImgPath);
+            fse.removeSync(outDBPath);
+
+            // close the sql connection
+            connection.end();
             throw error;
         });
 
