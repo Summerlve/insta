@@ -6,41 +6,54 @@ const path = require("path");
 const backUpPath = path.join(__dirname, "..", "backup");
 const zipFilePath = path.join(backUpPath, "insta_backup.zip");
 const AdmZip = require("adm-zip");
+
 const zip = new AdmZip(zipFilePath);
 zip.extractAllTo(backUpPath, true);
 
 // recovery the db
-const mysql = require("mysql");
-const { username: user, host, password, database } = require("../config.json").db;
+const Sequelize = require("sequelize");
+const { type, username, password, database, host, port } = config.db;
 const outDBPath = path.join(__dirname, "..", "backup", "db.txt");
 
-const connection = mysql.createConnection({
-    host,
-    user,
-    password,
-    database
+const sequelize = new Sequelize(database, username, password, {
+	host: host,
+	dialect: type,
+	port: port,
+	define: {
+		freezeTableName: true,
+		timestamps: false
+	},
+	timezone,
+    logging: false
 });
 
-connection.connect();
+const Post = require("../app/models/post.js")(sequelize, Sequelize);
 
-connection.query(
-    `load data infile "/Users/Summer/Projects/insta/backup/db.txt" into table post
-    fields terminated by "\t" lines terminated by "\r\n"
-    (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`
-);
+sequelize.sync().then(_ => {
+    return sequelize.query(
+        `load data infile "${outDBPath}" into table post
+        fields terminated by "\t" lines terminated by "\r\n"
+        (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`,
+    );
+}).then(_ => {
+    // recovery the images
+    const fse = require("fs-extra");
+    const originImgPath = path.join(__dirname, "..", "public", "images");
+    const recoveryImgPath = path.join(__dirname, "..", "backup", "images");
 
-connection.end();
+    // copy images
+    try {
+        fse.copySync(recoveryImgPath, originImgPath);
+    } catch (e) {
+        console.error(e);
+    }
 
-// recovery the images
-const fse = require("fs-extra");
-const originImgPath = path.join(__dirname, "..", "public", "images");
-const recoveryImgPath = path.join(__dirname, "..", "backup", "images");
+    // remove extract files
+    fse.removeSync(outDBPath);
+    fse.removeSync(recoveryImgPath);
 
-// copy images
-try {
-    fse.copySync(recoveryImgPath, originImgPath);
-} catch (e) {
-    console.error(e);
-}
+    console.log("Recovery completed");
+}).catch(error => {
+    if (error) throw console.error(error);
+});
 
-console.log("Recovery completed");

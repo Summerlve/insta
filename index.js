@@ -57,7 +57,7 @@ app.use(errorHandle);
 // 404 handler
 app.use((req, res, next) =>{
     res.render("notFound.html", {}, (error, html) => {
-        res.send(html);
+        res.status(404).send(html);
     });
 });
 
