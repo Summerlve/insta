@@ -8,6 +8,9 @@ const helmet = require("helmet");
 // use helmet
 app.use(helmet());
 
+// set NODE_ENV to "production"
+app.set("env", "production");
+
 // app root dir
 const appRoot = __dirname
 module.exports.appRoot = appRoot;
@@ -64,6 +67,9 @@ app.use((req, res, next) =>{
 // listen port, default port is 9000 just for test
 const { app: { host, port } } = config;
 app.listen(port, host, (error) => {
-    if (error) return console.log(error);
+    if (error)
+    {
+        return console.error(error);
+    }
     console.log(`listening ${host} : ${port}`);
 });

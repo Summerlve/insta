@@ -35,7 +35,7 @@ router.get("/index", page.index);
 
 // post
 router.get("/post", stringToNumber(["pos", "num"]), post.range);
-router.post("/post", multer({ storage }).single("image"), post.add);
+router.post("/post", filter, multer({ storage }).single("image"), post.add);
 
 // login
 router.get("/login", auth.index);
