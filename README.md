@@ -91,3 +91,13 @@ setting interface on pc
 
 setting interface on phone  
 ![setting interface](./images/setting-phone.png)
+
+### Version 3 Features
+
+1. backup zip file encryption
+
+2. account infomations backup
+
+3. all database filed case sensitive
+
+4. image compress
