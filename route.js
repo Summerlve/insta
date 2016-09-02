@@ -13,12 +13,13 @@ const filter = require("./app/controllers/filter.js");
 const auth = require("./app/controllers/auth.js");
 const post = require("./app/controllers/post.js");
 const stringToNumber = require("./app/controllers/stringToNumber.js");
+const ImageStorageEngine = require("./lib/ImageStorageEngine.js");
 
 // router init
 const router = express.Router();
 
 // file upload init
-const storage = multer.diskStorage({
+const storage = new ImageStorageEngine({
     destination(req, file, cb) {
         cb(null, storeImgPath);
     },

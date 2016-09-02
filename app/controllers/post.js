@@ -41,9 +41,12 @@ module.exports.add = (req, res, next) => {
     const { filename: img } = req.file;
     const { content } = req.body;
 
+    console.log(req.file);
     if (!img || !content)
     {
-        return res.redirect("/root");
+        return res.render("badrequest.html", {}, (error, html) => {
+            res.status(400).send(html);
+        });
     }
 
     const post = { content, img };
