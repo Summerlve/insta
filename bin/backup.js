@@ -1,10 +1,18 @@
 "use strict";
-//backup.js will backup all posts in db, and all images, but not include account infomations
+// backup.js will backup all posts in db, and all images, but not include account infomations
 
 const path = require("path");
+const fse = require("fs-extra");
+const mysql = require("mysql");
+const fs = require("fs");
+const archiver = require('archiver');
+const archive = archiver("zip");
+const crypto = require("crypto");
+const uuid = require("node-uuid");
+
+// remember that: compress first, then encryption
 
 // delete some files in  backup folder
-const fse = require("fs-extra");
 const backUpPath = path.join(__dirname, "..", "backup");
 
 fse.removeSync(path.join(backUpPath, "db.txt"));
@@ -12,7 +20,6 @@ fse.removeSync(path.join(backUpPath, "images"));
 fse.removeSync(path.join(backUpPath, "insta_backup.zip"));
 
 // migrate the db
-const mysql = require("mysql");
 const { username: user, host, password, database } = require("../config.json").db;
 
 const connection = mysql.createConnection({
@@ -34,7 +41,6 @@ connection.query(
         if (error) throw error;
 
         // migrate the images
-        const fs = require("fs");
         const originImgPath = path.join(__dirname, "..", "public", "images");
         const outImgPath = path.join(__dirname, "..", "backup", "images");
 
@@ -45,10 +51,10 @@ connection.query(
         fse.copySync(originImgPath, outImgPath);
 
         // compress the files
-        const archiver = require('archiver');
-        const zipFilePath = path.join(__dirname, "..", "backup", "insta_backup.zip");
+        const zipFilePath = path.join(__dirname, "..", "backup", "insta_backup.zip.enc");
         const zipFileStream = fs.createWriteStream(zipFilePath);
-        const archive = archiver("zip");
+        const secretKey = uuid.v4();
+        const cipher = crypto.createCipher("aes-256-cfb", secretKey);
 
         // remove temp files when zip failed, db.txt and images folder
         archive.on("error", error => {
@@ -69,9 +75,10 @@ connection.query(
             connection.end();
 
             console.log("Backup completed");
+            console.log(`Your secret key is ${secretKey}`);
         });
 
-        archive.pipe(zipFileStream);
+        archive.pipe(cipher).pipe(zipFileStream);
         archive
             .bulk([
                 { src: outImgPath + "/*", dest: "/images", expand: true, flatten: outImgPath},

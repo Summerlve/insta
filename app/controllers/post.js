@@ -41,7 +41,6 @@ module.exports.add = (req, res, next) => {
     const { filename: img } = req.file;
     const { content } = req.body;
 
-    console.log(req.file);
     if (!img || !content)
     {
         return res.render("badrequest.html", {}, (error, html) => {
