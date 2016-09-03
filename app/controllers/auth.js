@@ -8,7 +8,7 @@ module.exports.index = (req, res, next) => {
 
     if (access === true) return res.redirect("/root"); // if is login, redirect to /root
 
-    return res.render("login.html", { title: "login" },  (error, html) => {
+    return res.render("login.html", { title: "Login" },  (error, html) => {
         if (error) next(error);
         res.send(html);
     });

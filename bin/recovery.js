@@ -5,6 +5,7 @@ const path = require("path");
 const AdmZip = require("adm-zip");
 const Sequelize = require("sequelize");
 const config = require("../config.json");
+const fs = require("fs");
 const fse = require("fs-extra");
 const crypto = require("crypto");
 const [ , , secretKey] = process.argv;
@@ -32,7 +33,7 @@ decipherFileWriteStream.on("finish", _ => {
     // recovery the db
     const { type, username, password, database, host, port } = config.db;
     const { timezone } = config.app;
-    const outDBPath = path.join(__dirname, "..", "backup", "db.txt");
+    const recoveryDBPath = path.join(__dirname, "..", "backup", "db.txt");
 
     const sequelize = new Sequelize(database, username, password, {
         host: host,
@@ -50,7 +51,7 @@ decipherFileWriteStream.on("finish", _ => {
 
     sequelize.sync().then(_ => {
         return sequelize.query(
-            `load data infile "${outDBPath}" into table post
+            `load data infile "${recoveryDBPath}" into table post
             fields terminated by "\t" lines terminated by "\r\n"
             (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`);
     }).then(_ => {
@@ -62,8 +63,9 @@ decipherFileWriteStream.on("finish", _ => {
         fse.copySync(recoveryImgPath, originImgPath);
 
         // remove extract files
-        fse.removeSync(outDBPath);
+        fse.removeSync(recoveryDBPath);
         fse.removeSync(recoveryImgPath);
+        fse.removeSync(zipFilePath);
 
         sequelize.close();
 

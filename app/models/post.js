@@ -20,7 +20,7 @@ module.exports = function(sequelize, Sequelize) {
             field: "content"
         },
         img: {
-            type: Sequelize.STRING(255),
+            type: Sequelize.STRING.BINARY,
             allowNull: false,
             unique: true,
             field: "img",

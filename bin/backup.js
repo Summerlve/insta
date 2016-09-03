@@ -11,13 +11,12 @@ const crypto = require("crypto");
 const uuid = require("node-uuid");
 
 // remember that: compress first, then encryption
-
-// delete some files in  backup folder
 const backUpPath = path.join(__dirname, "..", "backup");
 
+// delete some files in  backup folder
 fse.removeSync(path.join(backUpPath, "db.txt"));
 fse.removeSync(path.join(backUpPath, "images"));
-fse.removeSync(path.join(backUpPath, "insta_backup.zip"));
+fse.removeSync(path.join(backUpPath, "insta_backup.zip.enc"));
 
 // migrate the db
 const { username: user, host, password, database } = require("../config.json").db;

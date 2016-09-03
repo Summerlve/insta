@@ -11,25 +11,25 @@ module.exports = function(sequelize, Sequelize) {
             field: "id"
         },
         username: {
-            type: Sequelize.STRING(255),
+            type: Sequelize.STRING.BINARY,
             allowNull: false,
             unique: true,
             field: "username"
         },
         password: {
-            type: Sequelize.STRING(255),
+            type: Sequelize.STRING.BINARY,
             allowNull: false,
             unique: false,
             field: "password"
         },
         github: {
-            type: Sequelize.STRING(255),
+            type: Sequelize.STRING.BINARY,
             allowNull: true,
             unique: true,
             field: "github"
         },
         twitter: {
-            type: Sequelize.STRING(255),
+            type: Sequelize.STRING.BINARY,
             allowNull: true,
             unique: true,
             field: "twitter"
