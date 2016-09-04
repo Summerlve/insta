@@ -56,7 +56,9 @@ may be some open source project doesn't in this list.
 
 8. cd /path/to/this/program/app/assets/root & npm install & npm run build
 
-9. start program using pm2, listening the local port, use nginx for reverse proxy
+9. install graphicsmagick for image compression
+
+10. start program using pm2, listening the local port, use nginx for reverse proxy
 
 ### The init account
     The initial account: {
