@@ -29,6 +29,7 @@
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "node-uuid": "^1.4.7",
-    "sequelize": "^3.23.6"
+    "sequelize": "^3.23.6",
+    "serve-favicon": "^2.3.0"
   }
 }

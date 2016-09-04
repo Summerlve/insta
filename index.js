@@ -49,6 +49,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// favicon
+const favicon = require("serve-favicon");
+app.use(favicon(path.join(__dirname, "public", "favicon.ico" )));
+
 // load route
 const router = require("./route.js");
 app.use("/", router);
