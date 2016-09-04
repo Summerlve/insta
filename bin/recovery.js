@@ -48,12 +48,22 @@ decipherFileWriteStream.on("finish", _ => {
     });
 
     const Post = require("../app/models/post.js")(sequelize, Sequelize);
+    const User = require("../app/models/user.js")(sequelize, Sequelize);
 
     sequelize.sync().then(_ => {
         return sequelize.query(
             `load data infile "${recoveryDBPath}" into table post
             fields terminated by "\t" lines terminated by "\r\n"
             (@col1, @col2, @col3) set content=@col1,img=@col2,create_at=@col3`);
+    }).then(_ => {
+        // recovert account infomations
+        const recoveryAccountPath = path.join(__dirname, "..", "backup", "account.txt");
+
+        return sequelize.query(
+            `load data infile "${recoveryAccountPath}" into table user
+            fields terminated by "\t" lines terminated by "\r\n"
+            (@col1, @col2, @col3, @col4) set username=@col1,password=@col2,github=@col3,twitter=@col4`
+        );
     }).then(_ => {
         // recovery the images
         const originImgPath = path.join(__dirname, "..", "public", "images");
@@ -75,4 +85,3 @@ decipherFileWriteStream.on("finish", _ => {
         console.error(error);
     });
 });
-

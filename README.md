@@ -94,10 +94,12 @@ setting interface on phone
 
 ### Version 3 Features
 
-1. backup zip file encryption
+1. Backup zip file encryption
 
-2. account infomations backup
+2. Account infomations backup
 
-3. all database filed case sensitive
+3. All database fileds case sensitive
 
-4. image compress
+4. Image compression
+
+5. Add favicon
