@@ -3,9 +3,13 @@
         <div class="column centered">
             <div class="ui fluid card">
                 <div class="image">
-                    <img :src="post.img">
+                    <div class="ui active centered medium loader" v-bind:class="{disabled: post.disabled}"></div>
+                    <img :src="post.img" v-on:load="post.disabled = true">
                 </div>
                 <div class="content">
+                    <div class="meta">
+                          <span class="date">{{ post.createAt }}</span>
+                    </div>
                     <div class="description">
                         {{ post.content }}
                     </div>

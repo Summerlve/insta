@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
+    "moment": "^2.17.1",
     "vue": "^1.0.21"
   },
   "devDependencies": {

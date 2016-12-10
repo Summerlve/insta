@@ -27,6 +27,7 @@
 
 <script>
     import PostTableView from "./components/PostTableView"
+    import moment from "moment";
 
     function min(array) {
         return array.sort((pre, lat) => lat - pre)[array.length - 1];
@@ -49,6 +50,9 @@
                 {
                     this.$data.loadMore = true;
                 }
+
+                postList.map(post => post.createAt = moment.utc(post.createAt).local().format("YYYY/MM/DD"));
+                postList.map(post => post.disabled = false);
 
                 this.$data.postList.push(...postList);
                 pos = min(postList.map(post => post.id)) - 1;
