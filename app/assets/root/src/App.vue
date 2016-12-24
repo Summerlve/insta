@@ -5,9 +5,11 @@
                 <h4 class="ui header">
                      <a v-link="{ path: '/editor' }">Editor</a>
                      <span class="custom-horizontal-space"></span>
+                     <a v-link="{ path: '/tweet' }">Tweet</a>
+                     <span class="custom-horizontal-space"></span>
                      <a v-link="{ path: '/setting' }">Setting</a>
                      <span class="custom-horizontal-space"></span>
-                     <a href="/logout">logOut</a>
+                     <a href="/logout">LogOut</a>
                 </h4>
                 <div class="ui divider"></div>
                 <router-view keep-alive></router-view>
@@ -19,7 +21,7 @@
 <script>
     export default {
 
-    }
+    };
 </script>
 
 <style scoped>

@@ -9,8 +9,7 @@
                         </div>
                         <input type="file" name="image" id="image-selector" required="required">
                         <div class="ui attached center aligned segment">
-                            <i class="file image outline icon" id="image-placeholder">
-                            </i>
+                            <i class="file image outline icon" id="image-placeholder"></i>
                             <img class="ui medium centered image" id="image-preview">
                         </div>
                     </div>

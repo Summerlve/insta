@@ -3,6 +3,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Editor from "./components/Editor";
 import Setting from "./components/Setting";
+import Tweet from "./components/Tweet";
 
 // use vue-router plugin
 Vue.use(VueRouter);
@@ -16,6 +17,9 @@ router.map({
     },
     "/setting": {
         component: Setting
+    },
+    "/tweet": {
+        component: Tweet
     }
 });
 
