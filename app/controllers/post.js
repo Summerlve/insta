@@ -43,7 +43,7 @@ module.exports.add = (req, res, next) => {
 
     if (!img || !content)
     {
-        return res.render("badrequest.html", {}, (error, html) => {
+        return res.render("badRequest.html", {}, (error, html) => {
             res.status(400).send(html);
         });
     }
